@@ -1048,7 +1048,8 @@ main(void) {
         if (fgets(getcommand, maxlen, stdin)) {
             getcommand[strcspn(getcommand,"\n")] = '\0';
         }
-        (void)parser(getcommand);
+        if (NULL == strstr(getcommand, "\x08"))
+            (void)parser(getcommand);
     }
 
     /*
