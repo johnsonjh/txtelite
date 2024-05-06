@@ -119,9 +119,8 @@ static void goat_soup(const char *source, plansys *psy);
 
 #define galsize    (256)
 #define AlienItems  (16)
+#define numforLave    7 /* Lave is 7th generated planet in galaxy one */
 #define lasttrade AlienItems
-
-#define numforLave     7 /* Lave is 7th generated planet in galaxy one */
 
 static plansys galaxy[galsize]; /* Need 0 to galsize-1 inclusive */
 
@@ -661,7 +660,7 @@ prisys(plansys plsy, boolean compressed) {
         (void)printf("%12s", econnames[plsy.economy]);
         (void)printf(" %15s", govnames[plsy.govtype]);
     } else {
-        (void)printf("\n\nSystem:  ");
+        (void)printf("\n\nSystem: ");
         (void)printf("%s", plsy.name);
         (void)printf("\nPosition (%i,", plsy.x);
         (void)printf("%i)", plsy.y);
@@ -1067,7 +1066,7 @@ struct desc_choice {
 
 static struct desc_choice desc_list[] = {
     /* 81 */ {{"fabled", "notable", "well known", "famous", "noted"}},
-    /* 82 */ {{"very", "mildly", "most", "reasonably", ""}},
+    /* 82 */ {{"very ", "mildly ", "most ", "reasonably ", ""}},
     /* 83 */ {{"ancient", "\x95", "great", "vast", "pink"}},
     /* 84 */ {{"\x9E \x9D plantations", "mountains", "\x9C", "\x94 forests", "oceans"}},
     /* 85 */ {{"shyness", "silliness", "mating traditions", "loathing of \x86", "love for \x86"}},
@@ -1088,7 +1087,7 @@ static struct desc_choice desc_list[] = {
     /* 94 */ {{"tropical", "dense", "rain", "impenetrable", "exuberant"}},
     /* 95 */ {{"funny", "wierd", "unusual", "strange", "peculiar"}},
     /* 96 */ {{"frequent", "occasional", "unpredictable", "dreadful", "deadly"}},
-    /* 97 */ {{"\x82 \x81 for \x8A", "\x82 \x81 for \x8A and \x8A", "\x88 by \x89", "\x82 \x81 for \x8A but \x88 by \x89", "a\x90 \x91"}},
+    /* 97 */ {{"\x82\x81 for \x8A", "\x82\x81 for \x8A and \x8A", "\x88 by \x89", "\x82\x81 for \x8A but \x88 by \x89", "a\x90 \x91"}},
     /* 98 */ {{"\x9B", "mountain", "edible", "tree", "spotted"}},
     /* 99 */ {{"\x9F", "\xA0", "\x87oid", "\x93", "\x92"}},
     /* 9A */ {{"ancient", "exceptional", "eccentric", "ingrained", "\x95"}},
