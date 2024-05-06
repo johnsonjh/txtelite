@@ -81,7 +81,10 @@ typedef int boolean;
 typedef unsigned char uint8;
 typedef unsigned short uint16;
 typedef signed short int16;
+
+#ifndef _AIX
 typedef signed long int32;
+#endif /* ifndef _AIX */
 
 typedef uint16 myuint;
 
