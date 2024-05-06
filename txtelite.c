@@ -474,13 +474,16 @@ static void
 displaymarket(markettype m) {
     unsigned short i;
 
+    (void)printf("\n");
+    (void)printf("Item      \t  Price\t   Quantity  \tHold\n");
+    (void)printf("=============\t ======\t  ========== \t====\n");
     for (i = 0; i <= lasttrade; i++) {
         (void)printf("\n");
         (void)printf("%s", commodities[i].name);
-        (void)printf("   %.1f", (double)((float)(m.price[i]) / 10));
-        (void)printf("   %u", m.quantity[i]);
+        (void)printf("\t %6.1f", (double)((float)(m.price[i]) / 10));
+        (void)printf("\t %6u", m.quantity[i]);
         (void)printf("%s", unitnames[commodities[i].units]);
-        (void)printf("   %u", shipshold[i]);
+        (void)printf("\t %2u", shipshold[i]);
     }
 }
 
@@ -660,19 +663,19 @@ prisys(plansys plsy, boolean compressed) {
         (void)printf("%12s", econnames[plsy.economy]);
         (void)printf(" %15s", govnames[plsy.govtype]);
     } else {
-        (void)printf("\n\nSystem: ");
+        (void)printf("\n\nSystem  \t: ");
         (void)printf("%s", plsy.name);
-        (void)printf("\nPosition (%i,", plsy.x);
+        (void)printf("\nPosition  \t: (%i,", plsy.x);
         (void)printf("%i)", plsy.y);
-        (void)printf("\nEconomy: (%i) ", plsy.economy);
+        (void)printf("\nEconomy   \t: (%i) ", plsy.economy);
         (void)printf("%s", econnames[plsy.economy]);
-        (void)printf("\nGovernment: (%i) ", plsy.govtype);
+        (void)printf("\nGovernment\t: (%i) ", plsy.govtype);
         (void)printf("%s", govnames[plsy.govtype]);
-        (void)printf("\nTech Level: %2i", (plsy.techlev) + 1);
-        (void)printf("\nTurnover: %u", (plsy.productivity));
-        (void)printf("\nRadius: %u", plsy.radius);
-        (void)printf("\nPopulation: %.1f Billion", (plsy.population) / 10.0);
-        (void)printf("\nSpecies: ");
+        (void)printf("\nTech Level\t: %-2i", (plsy.techlev) + 1);
+        (void)printf("\nTurnover  \t: %u", (plsy.productivity));
+        (void)printf("\nRadius    \t: %u", plsy.radius);
+        (void)printf("\nPopulation\t: %.1f Billion", (plsy.population) / 10.0);
+        (void)printf("\nSpecies   \t: ");
         if (plsy.human_colony) {
             (void)printf("Human Colonials\n");
         } else {
@@ -700,6 +703,7 @@ static boolean
 dotweakrand(char *s) {
     (void)s;
     nativerand ^= 1;
+    (void)printf("%s", nativerand ? "Now using native randomization." : "Now using weak randomization.");
     return true;
 }
 
@@ -709,7 +713,7 @@ dolocal(char *s) {
     myuint d;
 
     (void)s;
-    (void)printf("Galaxy number %i", galaxynum);
+    (void)printf("\nGalaxy number %i:", galaxynum);
     for (syscount = 0; syscount < galsize; ++syscount) {
         d = distance(galaxy[syscount], galaxy[currentplanet]);
         if (d <= maxfuel) {
@@ -942,9 +946,10 @@ domkt(char *s)
  */
 {
     (void)s;
+    (void)printf("\n");
     displaymarket(localmarket);
-    (void)printf("\nFuel :%.1f", (double)((float)fuel / 10));
-    (void)printf("      Holdspace :%it", holdspace);
+    (void)printf("\nFuel     \t %6.1f", (double)((float)fuel / 10));
+    (void)printf("\nHoldspace\t%6it", holdspace);
     return true;
 }
 
@@ -957,10 +962,14 @@ parser(char *s)
     myuint i;
     char c[maxlen];
 
-    spacesplit(s, c);
-    i = stringmatch(c, commands, nocomms);
     if (feof(stdin))
         doquit(NULL); /* catch EOF */
+
+    if (0 == strcmp(s, ""))
+        return false;
+
+    spacesplit(s, c);
+    i = stringmatch(c, commands, nocomms);
 
     if (i)
         return (*comfuncs[i - 1])(s);
@@ -980,21 +989,21 @@ boolean
 dohelp(char *s) {
     (void)(&s);
     (void)printf("\nCommands are:");
-    (void)printf("\nBuy   tradegood amount");
-    (void)printf("\nSell  tradegood amount");
-    (void)printf("\nFuel  amount     (buy amount LY of fuel)");
-    (void)printf("\nJump  planetname (limited by fuel)");
-    (void)printf("\nSneak planetname (any distance - no fuel cost)");
-    (void)printf("\nGalhyp           (jumps to next galaxy)");
-    (void)printf("\nInfo  planetname (prints info on system");
-    (void)printf("\nMkt              (shows market prices)");
-    (void)printf("\nLocal            (lists systems within 7 light years)");
-    (void)printf("\nCash number      (alters cash - cheating!)");
-    (void)printf("\nHold number      (change cargo bay)");
-    (void)printf("\nQuit or ^C       (exit)");
-    (void)printf("\nHelp             (display this text)");
-    (void)printf("\nRand             (toggle RNG)");
-    (void)printf("\n\nAbbreviations allowed eg. b fo 5 = Buy Food 5, m= Mkt");
+    (void)printf("\n[B]uy     <tradegood> <amount>");
+    (void)printf("\n[S]ell    <tradegood> <amount>");
+    (void)printf("\n[F]uel    <amount>             (buy amount LY of fuel)");
+    (void)printf("\n[J]ump    <planet>             (limited by fuel)");
+    (void)printf("\n[S]neak   <planet>             (any distance - no fuel cost)");
+    (void)printf("\n[G]alhyp                       (jumps to next galaxy)");
+    (void)printf("\n[I]nfo    <planet>             (prints info on system)");
+    (void)printf("\n[M]kt                          (shows market prices)");
+    (void)printf("\n[L]ocal                        (lists systems within 7 light years)");
+    (void)printf("\n[C]ash    <number>             (alters cash - cheating!)");
+    (void)printf("\n[Ho]ld    <number>             (change cargo bay)");
+    (void)printf("\n[Q]uit                         (exit)");
+    (void)printf("\n[H]elp                         (display this text)");
+    (void)printf("\n[R]and                         (toggle RNG)");
+    (void)printf("\n\nAbbreviations allowed, e.g. 'b fo 5' == 'Buy Food 5'");
     return true;
 }
 
@@ -1031,9 +1040,11 @@ main(void) {
 
 #undef PARSER
 
-    while (true) {
+    for(;;) {
         (void)printf("\n\nCash :%.1f>", (double)(((float)cash) / 10));
-	char getcommand[maxlen] = "";
+        char getcommand[maxlen];
+        (void)memset(getcommand, 0, maxlen);
+        (void)fflush(stdout);
         if (fgets(getcommand, maxlen, stdin)) {
             getcommand[strcspn(getcommand,"\n")] = '\0';
         }
