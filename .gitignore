@@ -5,3 +5,5 @@ txtelite
 core
 *~
 *.json
+*.d
+*.o
