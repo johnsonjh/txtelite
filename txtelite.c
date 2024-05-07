@@ -1053,7 +1053,7 @@ main(void) {
         (void)memset(getcommand, 0, maxlen);
         (void)fflush(stdout);
         if (fgets(getcommand, maxlen, stdin)) {
-            getcommand[strcspn(getcommand,"\n")] = '\0';
+            getcommand[strcspn(getcommand, "\n")] = '\0';
         }
         if (NULL == strstr(getcommand, "\x08"))
             (void)parser(getcommand);
