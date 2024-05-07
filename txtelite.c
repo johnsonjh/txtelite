@@ -488,7 +488,6 @@ static void
 displaymarket(markettype m) {
     unsigned short i;
 
-    (void)printf("\n");
     (void)printf("Item         \t  Price\t   Quantity  \tHold\n");
     (void)printf("=============\t ======\t  ========== \t====\n");
     for (i = 0; i <= lasttrade; i++) {
@@ -519,17 +518,17 @@ makesystem(seedtype *s) {
     if (thissys.govtype <= 1)
         thissys.economy = ((thissys.economy) | 2);
 
-    thissys.techlev = ((((*s).w1) >> 8) & 3) + ((thissys.economy) ^ 7);
+    thissys.techlev  = ((((*s).w1) >> 8) & 3) + ((thissys.economy) ^ 7);
     thissys.techlev += ((thissys.govtype) >> 1);
     if (((thissys.govtype) & 1) == 1)
         thissys.techlev += 1;
 
     /* C simulation of 6502's LSR then ADC */
 
-    thissys.population = 4 * (thissys.techlev) + (thissys.economy);
+    thissys.population  = 4 * (thissys.techlev) + (thissys.economy);
     thissys.population += (thissys.govtype) + 1;
 
-    thissys.productivity = (((thissys.economy) ^ 7) + 3) * ((thissys.govtype) + 4);
+    thissys.productivity  = (((thissys.economy) ^ 7) + 3) * ((thissys.govtype) + 4);
     thissys.productivity *= (thissys.population) * 8;
 
     thissys.radius = 256 * (((((*s).w2) >> 8) & 15) + 11) + thissys.x;
@@ -677,7 +676,7 @@ prisys(plansys plsy, boolean compressed) {
         (void)printf("%12s", econnames[plsy.economy]);
         (void)printf(" %15s", govnames[plsy.govtype]);
     } else {
-        (void)printf("\nSystem  \t: ");
+        (void)printf("System  \t: ");
         (void)printf("%s", plsy.name);
         (void)printf("\nPosition  \t: (%i,", plsy.x);
         (void)printf("%i)", plsy.y);
@@ -718,6 +717,7 @@ dotweakrand(char *s) {
     (void)s;
     nativerand ^= 1;
     (void)printf("%s", nativerand ? "Now using native randomization." : "Now using weak randomization.");
+
     return true;
 }
 
@@ -727,7 +727,7 @@ dolocal(char *s) {
     myuint d;
 
     (void)s;
-    (void)printf("\nGalaxy number %i:", galaxynum);
+    (void)printf("Galaxy number %i:", galaxynum);
     for (syscount = 0; syscount < galsize; ++syscount) {
         d = distance(galaxy[syscount], galaxy[currentplanet]);
         if (d <= maxfuel) {
@@ -754,19 +754,22 @@ dojump(char *s)
     planetnum dest = matchsys(s);
 
     if (dest == currentplanet) {
-        (void)printf("\nBad jump");
+        (void)printf("Bad jump");
+
         return false;
     }
 
     d = distance(galaxy[dest], galaxy[currentplanet]);
     if (d > fuel) {
-        (void)printf("\nJump to far");
+        (void)printf("Jump to far");
+
         return false;
     }
 
     fuel -= d;
     gamejump(dest);
     prisys(galaxy[currentplanet], false);
+
     return true;
 }
 
@@ -782,6 +785,7 @@ dosneak(char *s)
     fuel = 666;
     b    = dojump(s);
     fuel = fuelkeep;
+
     return b;
 }
 
@@ -793,12 +797,16 @@ dogalhyp(char *s)
  * planet arrive at 7th planet)
  */
 {
-    (void)(&s); /* Discard s */
+    (void)(s); /* Discard s */
+
     galaxynum++;
     if (galaxynum == 9)
         galaxynum = 1;
 
     buildgalaxy(galaxynum);
+
+    (void)printf("Jumped to galaxy %u", galaxynum);
+
     return true;
 }
 
@@ -811,6 +819,7 @@ doinfo(char *s)
     planetnum dest = matchsys(s);
 
     prisys(galaxy[dest], false);
+
     return true;
 }
 
@@ -823,11 +832,13 @@ dohold(char *s) {
             t += shipshold[i];
 
     if (t > a) {
-        (void)printf("\nHold too full");
+        (void)printf("Hold too full");
+
         return false;
     }
 
     holdspace = a - t;
+
     return true;
 }
 
@@ -847,7 +858,8 @@ dosell(char *s)
 
     i = stringmatch(s2, tradnames, lasttrade + 1);
     if (i == 0) {
-        (void)printf("\nUnknown trade good");
+        (void)printf("Unknown trade good");
+
         return false;
     }
 
@@ -858,7 +870,7 @@ dosell(char *s)
     if (t == 0) {
         (void)printf("Cannot sell any ");
     } else {
-        (void)printf("\nSelling %i", t);
+        (void)printf("Selling %i", t);
         (void)printf("%s", unitnames[commodities[i].units]);
         (void)printf(" of ");
     }
@@ -884,7 +896,8 @@ dobuy(char *s)
 
     i = stringmatch(s2, tradnames, lasttrade + 1);
     if (i == 0) {
-        (void)printf("\nUnknown trade good");
+        (void)printf("Unknown trade good");
+
         return false;
     }
 
@@ -894,12 +907,13 @@ dobuy(char *s)
     if (t == 0) {
         (void)printf("Cannot buy any ");
     } else {
-        (void)printf("\nBuying %i", t);
+        (void)printf("Buying %i", t);
         (void)printf("%s", unitnames[commodities[i].units]);
         (void)printf(" of ");
     }
 
     (void)printf("%s", tradnames[i]);
+
     return true;
 }
 
@@ -919,6 +933,7 @@ gamefuel(myuint f)
 
     fuel += f;
     cash -= fuelcost * f;
+
     return f;
 }
 
@@ -930,10 +945,14 @@ dofuel(char *s)
 {
     myuint f = gamefuel((myuint)(double)floor(10 * atof(s)));
 
-    if (f == 0)
-        (void)printf("\nCan't buy any fuel");
+    if (f == 0) {
+        (void)printf("Cannot buy any fuel");
 
-    (void)printf("\nBuying %.1fLY fuel", (double)((float)f / 10));
+        return false;
+    }
+
+    (void)printf("Buying %.1fLY fuel", (double)((float)f / 10));
+
     return true;
 }
 
@@ -950,6 +969,7 @@ docash(char *s)
         return true;
 
     (void)printf("Number not understood");
+
     return false;
 }
 
@@ -960,8 +980,8 @@ domkt(char *s)
  */
 {
     (void)s;
-    (void)printf("\n");
     displaymarket(localmarket);
+
     return true;
 }
 
@@ -977,8 +997,11 @@ parser(char *s)
     if (feof(stdin))
         doquit(NULL); /* Catch EOF */
 
-    if (0 == strcmp(s, ""))
+    if (0 == strcmp(s, "")) {
+        (void)printf(" Error: Empty command");
+
         return false;
+    }
 
     spacesplit(s, c);
     i = stringmatch(c, commands, nocomms);
@@ -986,7 +1009,8 @@ parser(char *s)
     if (i)
         return (*comfuncs[i - 1])(s);
 
-    (void)printf("\n Bad command (%s)", c);
+    (void)printf(" Error: Bad command (%s)", c);
+
     return false;
 }
 
@@ -994,13 +1018,14 @@ static boolean
 doquit(char *s) {
     (void)(&s);
     (void)puts("\n\nQuit.");
+
     exit(0);
 }
 
 boolean
 dohelp(char *s) {
     (void)(&s);
-    (void)printf("\n Commands are:");
+    (void)printf(" Commands are:");
     (void)printf("\n --------------------------------------------------------");
     (void)printf("\n [B]uy     <tradegood> <amount>");
     (void)printf("\n [S]ell    <tradegood> <amount>");
@@ -1031,7 +1056,8 @@ main(void) {
     myuint i;
 
     nativerand = 1;
-    (void)printf("\nWelcome to Text Elite 1.5.\n");
+
+    (void)printf("\nWelcome to Text Elite 1.5.\n\n");
 
     for (i = 0; i < lasttrade; i++) (void)strcpy(tradnames[i], commodities[i].name);
 
@@ -1062,15 +1088,21 @@ main(void) {
         (void)printf("\n\nFuel:%.1f", (double)((float)fuel / 10));
         (void)printf(" Holdspace:%it", holdspace);
         (void)printf(" Cash:%.1f > ", (double)(((float)cash) / 10));
+
         char getcommand[maxlen];
         (void)memset(getcommand, 0, maxlen);
+
         (void)fflush(stdout);
+
         if (fgets(getcommand, maxlen, stdin)) {
             getcommand[strcspn(getcommand, "\n")] = '\0';
         }
+
         if (NULL == strstr(getcommand, "\x08")) {
             (void)printf("\n");
             (void)parser(getcommand);
+        } else {
+            (void)printf("\n Error: Aborted command");
         }
     }
 
@@ -1115,7 +1147,7 @@ static struct desc_choice desc_list[] = {
     /* 8B */ {{"juice", "brandy", "water", "brew", "gargle blasters"}},
     /* 8C */ {{"\xB2", "\xB1 \x99", "\xB1 \xB2", "\xB1 \x9B", "\x9B \xB2"}},
     /* 8D */ {{"fabulous", "exotic", "hoopy", "unusual", "exciting"}},
-    /* 8E */ {{"cuisine", "night life", "casinos", "sit coms", " \xA1 "}},
+    /* 8E */ {{"cuisine", "night life", "casinos", "sit coms", "\xA1 "}},
     /* 8F */ {{"\xB0", "The planet \xB0", "The world \xB0", "This planet", "This world"}},
     /* 90 */ {{"n unremarkable", " boring", " dull", " tedious", " revolting"}},
     /* 91 */ {{"planet", "world", "place", "little planet", "dump"}},
