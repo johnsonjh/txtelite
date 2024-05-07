@@ -570,8 +570,8 @@ makesystem(seedtype *s) {
 /* Functions for galactic hyperspace */
 
 static uint16
-rotatel(uint16 x) /* rotate 8 bit number leftwards */
-/*
+rotatel(uint16 x)
+/* rotate 8 bit number leftwards
  * (tried to use chars but too much effort
  * persuading this braindead language to
  * do bit operations on bytes!)
