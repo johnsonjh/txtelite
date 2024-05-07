@@ -677,7 +677,7 @@ prisys(plansys plsy, boolean compressed) {
         (void)printf("%12s", econnames[plsy.economy]);
         (void)printf(" %15s", govnames[plsy.govtype]);
     } else {
-        (void)printf("\n\nSystem  \t: ");
+        (void)printf("\nSystem  \t: ");
         (void)printf("%s", plsy.name);
         (void)printf("\nPosition  \t: (%i,", plsy.x);
         (void)printf("%i)", plsy.y);
@@ -1000,22 +1000,28 @@ doquit(char *s) {
 boolean
 dohelp(char *s) {
     (void)(&s);
-    (void)printf("\nCommands are:");
-    (void)printf("\n[B]uy     <tradegood> <amount>");
-    (void)printf("\n[S]ell    <tradegood> <amount>");
-    (void)printf("\n[F]uel    <amount>    (buy amount LY of fuel)");
-    (void)printf("\n[J]ump    <planet>    (limited by fuel)");
-    (void)printf("\n[Sn]eak   <planet>    (any distance - no fuel cost)");
-    (void)printf("\n[G]alhyp              (jumps to next galaxy)");
-    (void)printf("\n[I]nfo    [planet]    (prints info on system)");
-    (void)printf("\n[M]kt                 (shows market prices)");
-    (void)printf("\n[L]ocal               (lists systems within 7 light years)");
-    (void)printf("\n[C]ash    <number>    (alters cash - cheating!)");
-    (void)printf("\n[Ho]ld    <number>    (change cargo bay)");
-    (void)printf("\n[Q]uit                (exit)");
-    (void)printf("\n[H]elp                (display this text)");
-    (void)printf("\n[R]and                (toggle RNG)");
-    (void)printf("\n\nAbbreviations allowed, e.g. 'b fo 5' == 'Buy Food 5'");
+    (void)printf("\n Commands are:");
+    (void)printf("\n --------------------------------------------------------");
+    (void)printf("\n [B]uy     <tradegood> <amount>");
+    (void)printf("\n [S]ell    <tradegood> <amount>");
+    (void)printf("\n [F]uel    <amount>  (buy amount LY of fuel)");
+    (void)printf("\n --------------------------------------------------------");
+    (void)printf("\n [J]ump    <planet>  (limited by fuel)");
+    (void)printf("\n [G]alhyp            (jumps to next galaxy)");
+    (void)printf("\n --------------------------------------------------------");
+    (void)printf("\n [I]nfo    [planet]  (prints info on system)");
+    (void)printf("\n [M]kt               (shows market prices)");
+    (void)printf("\n [L]ocal             (lists systems within 7 light years)");
+    (void)printf("\n --------------------------------------------------------");
+    (void)printf("\n [C]ash    <number>  (alters cash amount - cheating!)");
+    (void)printf("\n [Ho]ld    <number>  (change cargo bay size - cheating!)");
+    (void)printf("\n [Sn]eak   <planet>  (any distance, no fuel - cheating!)");
+    (void)printf("\n --------------------------------------------------------");
+    (void)printf("\n [H]elp              (display this text)");
+    (void)printf("\n [R]and              (toggle RNG)");
+    (void)printf("\n [Q]uit              (exit)");
+    (void)printf("\n --------------------------------------------------------");
+    (void)printf("\n Abbreviations allowed, e.g. 'b fo 5' == 'Buy Food 5'");
     return true;
 }
 
