@@ -8,7 +8,7 @@ CFLAGS+=$(WFLAGS)
 all: txtelite
 
 txtelite: txtelite.o
-	$(CC) -o $@ txtelite.o $(LDFLAGS) $(LIBM)
+	$(CC) -o $@ $< $(LDFLAGS) $(LIBM)
 
 txtelite.o: txtelite.c
 	$(CC) $(CFLAGS) -c -o $@ $<
