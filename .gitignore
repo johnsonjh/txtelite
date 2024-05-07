@@ -7,3 +7,4 @@ core
 *.json
 *.d
 *.o
+*.exe
