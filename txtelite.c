@@ -91,13 +91,13 @@ typedef int planetnum;
 
 typedef struct {
     uint8 a, b, c, d;
-} fastseedtype; /* four byte random number used for planet description */
+} fastseedtype; /* Four byte random number used for planet description */
 
 typedef struct {
     uint16 w0;
     uint16 w1;
     uint16 w2;
-} seedtype; /* six byte random number used as seed for planets */
+} seedtype; /* Six byte random number used as seed for planets */
 
 typedef struct {
     myuint x;
@@ -134,11 +134,11 @@ static boolean nativerand;
 
 typedef struct {      /* In 6502 version these were: */
     myuint baseprice; /* one byte */
-    int16 gradient;   /* five bits plus sign */
-    myuint basequant; /* one byte */
-    myuint maskbyte;  /* one byte */
-    myuint units;     /* two bits */
-    char name[20];    /* longest="Radioactives" */
+    int16 gradient;   /* Five bits plus sign */
+    myuint basequant; /* One byte */
+    myuint maskbyte;  /* One byte */
+    myuint units;     /* Two bits */
+    char name[20];    /* Longest="Radioactives" */
 } tradegood;
 
 typedef struct {
@@ -445,6 +445,7 @@ genmarket(myuint fluct, plansys p)
  * Trade Item prices are held internally in a single byte=true value/4.
  * The decimal point in prices is introduced only when printing them.
  * Internally, all prices are integers.
+ *
  * The player's cash is held in four bytes.
  */
 {
@@ -496,14 +497,14 @@ makesystem(seedtype *s) {
     plansys thissys;
     myuint pair1, pair2, pair3, pair4;
     uint16 longnameflag = ((*s).w0) & 64;
-    char *pairs1        = &pairs[24]; /* start of pairs used by this routine */
+    char *pairs1        = &pairs[24]; /* Start of pairs used by this routine */
 
     thissys.x = (((*s).w1) >> 8);
     thissys.y = (((*s).w0) >> 8);
 
-    thissys.govtype = ((((*s).w1) >> 3) & 7); /* bits 3,4 &5 of w1 */
+    thissys.govtype = ((((*s).w1) >> 3) & 7); /* Bits 3,4 &5 of w1 */
 
-    thissys.economy = ((((*s).w0) >> 8) & 7); /* bits 8,9 &A of w0 */
+    thissys.economy = ((((*s).w0) >> 8) & 7); /* Bits 8,9 &A of w0 */
     if (thissys.govtype <= 1)
         thissys.economy = ((thissys.economy) | 2);
 
@@ -551,7 +552,7 @@ makesystem(seedtype *s) {
     (thissys.name)[4] = pairs1[pair3];
     (thissys.name)[5] = pairs1[pair3 + 1];
 
-    if (longnameflag) /* bit 6 of ORIGINAL w0 flags a four-pair name */
+    if (longnameflag) /* Bit 6 of ORIGINAL w0 flags a four-pair name */
     {
         (thissys.name)[6] = pairs1[pair4];
         (thissys.name)[7] = pairs1[pair4 + 1];
@@ -571,7 +572,7 @@ makesystem(seedtype *s) {
 
 static uint16
 rotatel(uint16 x)
-/* rotate 8 bit number leftwards
+/* Rotate 8 bit number leftwards
  * (tried to use chars but too much effort
  * persuading this braindead language to
  * do bit operations on bytes!)
@@ -593,8 +594,8 @@ nextgalaxy(seedtype *s)
  * Apply to base seed; once for galaxy 2
  */
 {
-    (*s).w0 = twist((*s).w0); /* twice for galaxy 3, etc. */
-    (*s).w1 = twist((*s).w1); /* Eighth application gives galaxy 1 again*/
+    (*s).w0 = twist((*s).w0); /* Twice for galaxy 3, etc. */
+    (*s).w1 = twist((*s).w1); /* Eighth application gives galaxy 1 again */
     (*s).w2 = twist((*s).w2);
 }
 
@@ -963,7 +964,7 @@ parser(char *s)
     char c[maxlen];
 
     if (feof(stdin))
-        doquit(NULL); /* catch EOF */
+        doquit(NULL); /* Catch EOF */
 
     if (0 == strcmp(s, ""))
         return false;
@@ -1059,7 +1060,8 @@ main(void) {
      * and these prices tally with the NES ones.
      * However, the availabilities reside in the saved game data.
      * Availabilities are calculated (and fluctuation randomised)
-     * on hyperspacing
+     * on hyperspacing.
+     *
      * I have checked with this code for Zaonce with fluctaution &AB
      * against the SuperVision 6502 code and both prices and availabilities
      * tally.
