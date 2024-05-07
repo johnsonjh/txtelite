@@ -2,6 +2,10 @@
 
 This is an updated and bugfixed version of **Text Elite** 1.5.
 
+It should build and run on any POSIX.1-2001 system with a
+C89 compiler, and has been tested on Linux, AIX, Haiku,
+\*BSD, DJGPP, macOS, Cygwin, and Windows.
+
 **Text Elite** is a C implementation of the classic Elite
 trading system with a text adventure style shell, originally
 coded to formalise and archive the definition of the Classic
