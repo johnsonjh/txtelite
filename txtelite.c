@@ -70,8 +70,8 @@
 #include <string.h>
 #include <time.h>
 
-#define true (-1)
-#define false (0)
+#define true  (-1)
+#define false  (0)
 #define tonnes (0)
 
 #define maxlen (20) /* Length of strings */
@@ -132,13 +132,13 @@ static fastseedtype rnd_seed;
 
 static boolean nativerand;
 
-typedef struct {      /* In 6502 version these were: */
-    myuint baseprice; /* one byte */
-    int16 gradient;   /* Five bits plus sign */
-    myuint basequant; /* One byte */
-    myuint maskbyte;  /* One byte */
-    myuint units;     /* Two bits */
-    char name[20];    /* Longest="Radioactives" */
+typedef struct {       /* In 6502 version these were: */
+    myuint baseprice;  /* one byte */
+    int16 gradient;    /* Five bits plus sign */
+    myuint basequant;  /* One byte */
+    myuint maskbyte;   /* One byte */
+    myuint units;      /* Two bits */
+    char name[maxlen]; /* Longest="Radioactives" */
 } tradegood;
 
 typedef struct {
@@ -232,20 +232,20 @@ static char tradnames[lasttrade][maxlen];
 
 #define nocomms (14)
 
-static boolean dobuy(char *);
-static boolean dosell(char *);
-static boolean dofuel(char *);
-static boolean dojump(char *);
-static boolean docash(char *);
-static boolean domkt(char *);
-static boolean dohelp(char *);
-static boolean dohold(char *);
-static boolean dosneak(char *);
-static boolean dolocal(char *);
-static boolean doinfo(char *);
-static boolean dogalhyp(char *);
-static boolean doquit(char *);
-static boolean dotweakrand(char *);
+static boolean dobuy       (char *);
+static boolean dosell      (char *);
+static boolean dofuel      (char *);
+static boolean dojump      (char *);
+static boolean docash      (char *);
+static boolean domkt       (char *);
+static boolean dohelp      (char *);
+static boolean dohold      (char *);
+static boolean dosneak     (char *);
+static boolean dolocal     (char *);
+static boolean doinfo      (char *);
+static boolean dogalhyp    (char *);
+static boolean doquit      (char *);
+static boolean dotweakrand (char *);
 
 static char commands[nocomms][maxlen] = {"buy",  "sell",  "fuel",  "jump", "cash",   "mkt",  "help",
                                          "hold", "sneak", "local", "info", "galhyp", "quit", "rand"};
@@ -369,7 +369,9 @@ spacesplit(char *s, char *t)
     size_t i = 0, j = 0;
     size_t l = strlen(s);
 
-    while ((i < l) & (s[i] == ' ')) i++;
+    while ((i < l) & (s[i] == ' '))
+        i++;
+
     /* Strip leading spaces */
     if (i == l) {
         s[0] = 0;
@@ -378,11 +380,15 @@ spacesplit(char *s, char *t)
         return;
     }
 
-    while ((i < l) & (s[i] != ' ')) t[j++] = s[i++];
+    while ((i < l) & (s[i] != ' '))
+        t[j++] = s[i++];
     t[j] = 0;
+
     i++;
     j = 0;
-    while (i < l) s[j++] = s[i++];
+
+    while (i < l)
+        s[j++] = s[i++];
     s[j] = 0;
 }
 
@@ -1167,7 +1173,8 @@ goat_soup(const char *source, plansys *psy) {
                     {
                         int i = 1;
                         (void)printf("%c", psy->name[0]);
-                        while (psy->name[i] != '\0') (void)printf("%c", tolower(psy->name[i++]));
+                        while (psy->name[i] != '\0')
+                            (void)printf("%c", tolower(psy->name[i++]));
                     } break;
 
                     case 0xB1: /* <planet name>ian */
