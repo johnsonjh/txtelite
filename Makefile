@@ -10,7 +10,7 @@ all: txtelite
 txtelite: txtelite.o
 	$(CC) -o $@ $< $(LDFLAGS) $(LIBM)
 
-txtelite.o: txtelite.c
+.o:
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 .PHONY: clean
