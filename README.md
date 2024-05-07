@@ -22,7 +22,7 @@ jumped to a common "central" system.
 
 You can send scripts to `txtelite` via redirection or
 pipes using a command such as `./txtelite < ./script.txt`.
-Two such scripts are included.
+An example script, `sinclair.txt`, is included.
 
 If you want input line-editing and command history, use
 [`rlwrap`](https://github.com/hanslub42/rlwrap), *i.e.*
