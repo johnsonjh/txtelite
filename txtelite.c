@@ -477,7 +477,7 @@ displaymarket(markettype m) {
     unsigned short i;
 
     (void)printf("\n");
-    (void)printf("Item      \t  Price\t   Quantity  \tHold\n");
+    (void)printf("Item         \t  Price\t   Quantity  \tHold\n");
     (void)printf("=============\t ======\t  ========== \t====\n");
     for (i = 0; i <= lasttrade; i++) {
         (void)printf("\n");
