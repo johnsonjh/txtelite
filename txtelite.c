@@ -355,6 +355,7 @@ stringmatch(char *s, char a[][20], myuint n)
 
         i++;
     }
+
     return 0;
 }
 
@@ -373,6 +374,7 @@ spacesplit(char *s, char *t)
     if (i == l) {
         s[0] = 0;
         t[0] = 0;
+
         return;
     }
 
@@ -427,6 +429,7 @@ gamesell(myuint i, myuint a) /* As gamebuy but selling */
         holdspace += t;
 
     cash += t * (localmarket.price[i]);
+
     return t;
 }
 
@@ -470,6 +473,7 @@ genmarket(myuint fluct, plansys p)
     }
 
     market.quantity[AlienItems] = 0; /* Override to force nonavailability */
+
     return market;
 }
 
@@ -1136,7 +1140,6 @@ gen_rnd_number(void) {
 
     rnd_seed.a = (uint8)(a & 0xFF);
     rnd_seed.c = (uint8)x;
-
     a          = a / 256; /* a = any carry left from above */
     x          = rnd_seed.b;
     a          = (a + x + rnd_seed.d) & 0xFF;
