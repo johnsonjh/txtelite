@@ -18,12 +18,12 @@ Note that **Text Elite**'s Galactic Hyperspace jumps to the
 system in the target Galaxy having the same position in the
 Galactic Generation sequence as the planet jumped from.
 This is a deviation from Classic 6502 Elite, which always
-jumped to a common "central" system (nearest (#0x60,#x60)).
+jumped to a common "central" system.
 
-You can send scripts to `txtelite` via redirection or pipes
-using a command such as `./txtelite < ./script.txt`. Two such
-scripts are included.
+You can send scripts to "`txtelite`" via redirection or
+pipes using a command such as "`./txtelite < ./script.txt`".
+Two such scripts are included.
 
 If you want input line-editing and command history, use
 [`rlwrap`](https://github.com/hanslub42/rlwrap), *i.e.*
-`rlwrap ./txtelite`.
+"`rlwrap ./txtelite`".
