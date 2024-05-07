@@ -200,14 +200,14 @@ static tradegood commodities[] = {
 #if POLITICALLY_CORRECT
     {0x28, -0x05, 0xE2, 0x1F, 0, "Robot Slaves"},
     {0x53, -0x05, 0xFB, 0x0F, 0, "Beverages   "},
-#else  /* if POLITICALLY_CORRECT */
+#else
     {0x28, -0x05, 0xE2, 0x1F, 0, "Slaves      "},
     {0x53, -0x05, 0xFB, 0x0F, 0, "Liquor/Wines"},
 #endif /* if POLITICALLY_CORRECT */
     {0xC4, +0x08, 0x36, 0x03, 0, "Luxuries    "},
 #if POLITICALLY_CORRECT
     {0xEB, +0x1D, 0x08, 0x78, 0, "Rare Species"},
-#else  /* if POLITICALLY_CORRECT */
+#else
     {0xEB, +0x1D, 0x08, 0x78, 0, "Narcotics   "},
 #endif /* if POLITICALLY_CORRECT */
     {0x9A, +0x0E, 0x38, 0x03, 0, "Computers   "},
