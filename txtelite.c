@@ -14,7 +14,8 @@
 
 /*
  * Edited by Jeffrey H. Johnson to resolve all warnings
- * from Clang, Clang Analyzer, and PVS-Studio.
+ * from Clang, Clang Analyzer, Oracle Lint, Cppcheck,
+ * Flawfinder (-m 5), Smatch, and PVS-Studio.
  */
 
 /*
