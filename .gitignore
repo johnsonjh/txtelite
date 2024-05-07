@@ -8,3 +8,4 @@ core
 *.d
 *.o
 *.exe
+*.EXE

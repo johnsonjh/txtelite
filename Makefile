@@ -15,4 +15,4 @@ txtelite.o: txtelite.c
 
 .PHONY: clean
 clean:
-	-$(RM) txtelite txtelite.exe txtelite.o core *.core
+	-$(RM) txtelite *.o core *.core *.exe *.EXE
