@@ -1077,6 +1077,7 @@ main(void) {
      * against the SuperVision 6502 code and both prices and availabilities
      * tally.
      */
+
 #if !defined(__SUNPRO_C) && !defined(__SUNPRO_CC) && !defined(__SUNPRO_CC_COMPAT)
     /*NOTREACHED*/ /* unreachable */
     return 0;
