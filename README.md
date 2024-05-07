@@ -11,8 +11,8 @@ trading system with a text adventure style shell, originally
 coded to formalise and archive the definition of the Classic
 Elite Universe.
 
-**Text Elite** is trading only. There is no risk of misjump,
-police, or pirate attack.
+**Text Elite** is trading only. There is no risk of
+mis-jump, police, or pirate attacks.
 
 Note that **Text Elite**'s Galactic Hyperspace jumps to the
 system in the target Galaxy having the same position in the
@@ -20,10 +20,10 @@ Galactic Generation sequence as the planet jumped from.
 This is a deviation from Classic 6502 Elite, which always
 jumped to a common "central" system.
 
-You can send scripts to "`txtelite`" via redirection or
-pipes using a command such as "`./txtelite < ./script.txt`".
+You can send scripts to `txtelite` via redirection or
+pipes using a command such as `./txtelite < ./script.txt`.
 Two such scripts are included.
 
 If you want input line-editing and command history, use
 [`rlwrap`](https://github.com/hanslub42/rlwrap), *i.e.*
-"`rlwrap ./txtelite`".
+`rlwrap ./txtelite`.
