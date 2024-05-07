@@ -169,11 +169,11 @@ static char pairs[] = "ABOUSEITILETSTONLONUTHNO"
                       "ERATENBERALAVETI"
                       "EDORQUANTEISRION"; /* Dots should be nullprint characters */
 
-static char govnames[][maxlen] = {"Anarchy",   "Feudal",      "Multi-gov", "Dictatorship",
-                                  "Communist", "Confederacy", "Democracy", "Corporate State"};
+static char govnames[8][maxlen] = {"Anarchy",   "Feudal",      "Multi-gov", "Dictatorship",
+                                   "Communist", "Confederacy", "Democracy", "Corporate State"};
 
-static char econnames[][maxlen] = {"Rich Ind",    "Average Ind", "Poor Ind",     "Mainly Ind",
-                                   "Mainly Agri", "Rich Agri",   "Average Agri", "Poor Agri"};
+static char econnames[8][maxlen] = {"Rich Ind",    "Average Ind", "Poor Ind",     "Mainly Ind",
+                                    "Mainly Agri", "Rich Agri",   "Average Agri", "Poor Agri"};
 
 static char species_stature[3][maxlen]         = {"Large", "Fierce", "Small"};
 static char species_coloration[6][maxlen]      = {"Green", "Red", "Yellow", "Blue", "Black", "Harmless"};
@@ -181,7 +181,7 @@ static char species_characteristics[6][maxlen] = {"Slimy", "Bug-Eyed", "Horned",
 static char species_base_type[8][maxlen]       = {"Rodents", "Frogs",     "Lizards", "Lobsters",
                                                   "Birds",   "Humanoids", "Felines", "Insects"};
 
-static char unitnames[][5] = {"t", "kg", "g"};
+static char unitnames[3][5] = {"t", "kg", "g"};
 
 /* Data for DB's price/availability generation system */
 
