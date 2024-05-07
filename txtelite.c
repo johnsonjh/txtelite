@@ -950,8 +950,6 @@ domkt(char *s)
     (void)s;
     (void)printf("\n");
     displaymarket(localmarket);
-    (void)printf("\nFuel     \t %6.1f", (double)((float)fuel / 10));
-    (void)printf("\nHoldspace\t%6it", holdspace);
     return true;
 }
 
@@ -1043,7 +1041,9 @@ main(void) {
 #undef PARSER
 
     for(;;) {
-        (void)printf("\n\nCash :%.1f>", (double)(((float)cash) / 10));
+        (void)printf("\n\nFuel:%.1f", (double)((float)fuel / 10));
+        (void)printf(" Holdspace:%it", holdspace);
+        (void)printf(" Cash:%.1f > ", (double)(((float)cash) / 10));
         char getcommand[maxlen];
         (void)memset(getcommand, 0, maxlen);
         (void)fflush(stdout);
