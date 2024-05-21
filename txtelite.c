@@ -21,8 +21,8 @@
 /*
  * -----------------------------------------------------------------------
  *  The nature of basic mechanisms used to generate the Elite socio-
- *  economic universe are now widely known. A competant games programmer
- *  should be able to produce equivalent functionality. A competant
+ *  economic universe are now widely known. A competent games programmer
+ *  should be able to produce equivalent functionality. A competent
  *  hacker should be able to lift the exact system from the object code
  *  base of official conversions.
  *
@@ -218,7 +218,7 @@ static tradegood commodities[] = {
     {0x20, -0x01, 0x35, 0x03, 0, "Minerals    "},
     {0x61, -0x01, 0x42, 0x07, 1, "Gold        "},
     {0xAB, -0x02, 0x37, 0x1F, 1, "Platinum    "},
-    {0x2D, -0x01, 0xFA, 0x0F, 2, "Gem-Strones "},
+    {0x2D, -0x01, 0xFA, 0x0F, 2, "Gem-Stones  "},
     {0x35, +0x0F, 0xC0, 0x07, 0, "Alien Items "},
 };
 
@@ -270,7 +270,7 @@ myrand(void) {
 
     if (nativerand) {
         r = rand();
-    } else { /* As supplied by D McDonnell from SAS Insititute C */
+    } else { /* As supplied by D. McDonnell from SAS Institute C */
         r = (((((((((((lastrand << 3) - lastrand) << 3) + lastrand) << 1) + lastrand) << 4) - lastrand) << 1) - lastrand) + 0xe60)
              & 0x7fffffff;
         lastrand = (unsigned int)r - 1;
@@ -302,7 +302,7 @@ static void
 tweakseed(seedtype *s) {
     uint16 temp;
 
-    temp    = ((*s).w0) + ((*s).w1) + ((*s).w2); /* 2 byte aritmetic */
+    temp    = ((*s).w0) + ((*s).w1) + ((*s).w2); /* 2 byte arithmetic */
     (*s).w0 = (*s).w1;
     (*s).w1 = (*s).w2;
     (*s).w2 = temp;
@@ -327,11 +327,12 @@ stripout(char *s, const char c) /* Remove all c's from string s */
 }
 
 static int
-stringbeg(const char *s, const char *t) {
+stringbeg(const char *s, const char *t)
 /*
  * Return nonzero (true) if string t
  * begins with non-empty string s
  */
+{
     size_t len_s = strlen(s);
     size_t len_t = strlen(t);
 
@@ -400,7 +401,7 @@ gamebuy(myuint i, myuint a)
 /*
  * Try to buy amount a of good i
  * Return amount bought
- * Cannot buy more than is availble,
+ * Cannot buy more than is available,
  * can afford, or will fit in hold
  */
 {
@@ -636,7 +637,7 @@ gamejump(planetnum i) /* Move to system i */
 static myuint
 distance(plansys a, plansys b)
 /*
- * Seperation between two planets
+ * Separation between two planets
  * (4*sqrt(X*X+Y*Y/4))
  */
 {
@@ -1154,7 +1155,7 @@ static struct desc_choice desc_list[] = {
     /* 92 */ {{"wasp", "moth", "grub", "ant", "\xB2"}},
     /* 93 */ {{"poet", "arts graduate", "yak", "snail", "slug"}},
     /* 94 */ {{"tropical", "dense", "rain", "impenetrable", "exuberant"}},
-    /* 95 */ {{"funny", "wierd", "unusual", "strange", "peculiar"}},
+    /* 95 */ {{"funny", "weird", "unusual", "strange", "peculiar"}},
     /* 96 */ {{"frequent", "occasional", "unpredictable", "dreadful", "deadly"}},
     /* 97 */ {{"\x82\x81 for \x8A", "\x82\x81 for \x8A and \x8A", "\x88 by \x89", "\x82\x81 for \x8A but \x88 by \x89", "a\x90 \x91"}},
     /* 98 */ {{"\x9B", "mountain", "edible", "tree", "spotted"}},
